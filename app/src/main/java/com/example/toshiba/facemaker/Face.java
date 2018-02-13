@@ -15,9 +15,10 @@ import static android.graphics.Color.rgb;
 
 public class Face extends SurfaceView {
 
-    private int skinColor;
-    private int eyeColor;
-    private int hairColor;
+    //0 = red, 1 = green, 2 = blue
+    private int[] skinColor = new int[3];
+    private int[] eyeColor = new int[3];
+    private int[] hairColor = new int[3];
     private int hairStyle;
 
     public Face(Context context){
@@ -50,14 +51,17 @@ public class Face extends SurfaceView {
 
     public void randomize() {
         Random rand = new Random();
-        skinColor = rgb(rand.nextInt(255), rand.nextInt(255),
-                rand.nextInt(255));
-        eyeColor = rgb(rand.nextInt(255), rand.nextInt(255),
-                rand.nextInt(255));
-        hairColor = rgb(rand.nextInt(255), rand.nextInt(255),
-                rand.nextInt(255));
+        for(int i = 0; i<3; i++){
+            skinColor[i] = rand.nextInt(255);
+            eyeColor[i] = rand.nextInt(255);
+            hairColor[i] = rand.nextInt(255);
+        }
 
         hairStyle = rand.nextInt(2);
+
+        //Set seekBars based on int values
+        //Maybe have separate classes for each facial feat?
+        //E.g. Eye: red val, green val, blue val with getter methods
     }
 
     public void drawGirlCut(Canvas canvas, Paint hair){
@@ -73,5 +77,23 @@ public class Face extends SurfaceView {
     public void drawPartyHat(Canvas canvas, Paint hair){
         //Draw triangle outline
         //Stripes with the overlapping methods??
+    }
+
+    public void setRedVal(int newRed, String faceFeat){
+        if(faceFeat.equals("Hair")){
+
+        }
+        else if(faceFeat.equals("Eyes")){
+
+        }
+        else if(faceFeat.equals(""))
+    }
+
+    public void setGreenVal(int newGreen, String faceFeat){
+
+    }
+
+    public void setBlueVal(int newBlue, String faceFeat){
+
     }
 }
