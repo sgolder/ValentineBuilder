@@ -9,14 +9,25 @@ import android.widget.SeekBar;
 
 public class Listener implements View.OnClickListener,
         SeekBar.OnSeekBarChangeListener{
+    private SeekBar redSeek = null;
+    private SeekBar greenSeek = null;
+    private SeekBar blueSeek = null;
+
     @Override
     public void onClick(View v) {
-
+        //Randomize button listener
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        SeekBar cur = (SeekBar) seekBar;
+        int curId = cur.getId();
+        String seekLabel = (String)cur.getResources().
+                getResourceEntryName(curId);
 
+        if(seekLabel.equalsIgnoreCase("")){
+
+        }
     }
 
     @Override
