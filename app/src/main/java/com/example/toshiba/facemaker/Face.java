@@ -117,8 +117,6 @@ public class Face extends SurfaceView {
         //Stripes with the overlapping methods??
     }
 
-
-
     public void rgbToInt(){
         skinColor = rgb(skinArray[0], skinArray[1], skinArray[2]);
         eyeColor = rgb(eyeArray[0], eyeArray[1], eyeArray[2]);
@@ -132,24 +130,16 @@ public class Face extends SurfaceView {
     }
 
     //Getters and setters
-    public void setRedVal(int newRed, String faceFeat){
-        if(faceFeat.equals("Hair Color")){
-
+    public void setColorVal(int newValue, int color, String faceFeat){
+        if(faceFeat.equals("Hair")){
+            hairArray[color] = newValue;
         }
-        else if(faceFeat.equals("Eye Color")){
-
+        else if(faceFeat.equals("Eye")){
+            eyeArray[color] = newValue;
         }
-        else if(faceFeat.equals("Skin Color")){
-
+        else if(faceFeat.equals("Skin")){
+            skinArray[color] = newValue;
         }
-    }
-
-    public void setGreenVal(int newGreen, String faceFeat){
-
-    }
-
-    public void setBlueVal(int newBlue, String faceFeat){
-
     }
 
     public int[] getSkinArray(){

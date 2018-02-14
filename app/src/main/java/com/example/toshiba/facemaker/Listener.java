@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
@@ -14,7 +15,7 @@ import android.widget.SeekBar;
  */
 
 public class Listener implements View.OnClickListener,
-        SeekBar.OnSeekBarChangeListener{
+        SeekBar.OnSeekBarChangeListener, AdapterView.OnItemSelectedListener {
     private SeekBar redSeek = null;
     private SeekBar greenSeek = null;
     private SeekBar blueSeek = null;
@@ -43,6 +44,7 @@ public class Listener implements View.OnClickListener,
         {
             colorArray = face.getSkinArray();
             updateSeekBars(colorArray);
+            faceFeat = "Skin";
         }
         //SeekBar setProgress based on selection
 
@@ -54,18 +56,25 @@ public class Listener implements View.OnClickListener,
         SeekBar cur = (SeekBar) seekBar;
         int curId = cur.getId();
         //Insert external citation
-        String seekLabel = (String)cur.getResources().
+        String seekLabel = cur.getResources().
                 getResourceEntryName(curId);
 
         if(seekLabel.equals("seekBarRed")){
-            //Call red value change
+            face.setColorVal(progress, 0, faceFeat);
         }
         else if(seekLabel.equals("seekBarGreen")){
-            //Call green value change
+            face.setColorVal(progress, 1, faceFeat);
         }
         else if(seekLabel.equals("seekBarBlue")){
-            //Call blue value change
+            face.setColorVal(progress, 2, faceFeat);
         }
+
+        face.update();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
     }
 
     public void addViews(SurfaceView initface, SeekBar[] seekBars,
@@ -92,5 +101,11 @@ public class Listener implements View.OnClickListener,
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         //Will not use
+    }
+
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        //Nothing will display
     }
 }

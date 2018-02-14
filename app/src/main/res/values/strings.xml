@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Face Maker</string>
+    <string-array name="hairstyles">
+        <item>Girl cut</item>
+        <item>Frosted tips</item>
+        <item>Party hat</item>
+    </string-array>
 </resources>
