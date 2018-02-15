@@ -29,7 +29,6 @@ public class Face extends SurfaceView {
     public Face(Context context){
         super(context);
         generalInit();
-        randomize();
     }
     public Face(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -140,9 +139,12 @@ public class Face extends SurfaceView {
         else if(faceFeat.equals("Skin")){
             skinArray[color] = newValue;
         }
+        rgbToInt();
     }
 
-    public int[] getSkinArray(){
-        return skinArray;
-    }
+    public int[] getSkinArray(){ return skinArray; }
+
+    public int[] getEyeArray(){ return eyeArray; }
+
+    public int[] getHairArray() { return hairArray; }
 }
