@@ -4,12 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Point;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceView;
 
 import java.util.Random;
 
+import static android.R.attr.x;
 import static android.graphics.Color.rgb;
 
 /**
@@ -54,6 +59,7 @@ public class Face extends SurfaceView {
         setWillNotDraw(false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onDraw(Canvas canvas){
         //Initialize face with random generation of color/style
@@ -71,7 +77,7 @@ public class Face extends SurfaceView {
             drawGirlCut(canvas, xCenter, yCenter);
         }
         else if( hairStyle == 1 ){
-            drawFrostedTips(canvas);
+            drawFrostedTips(canvas, xCenter, yCenter);
         }
         else if( hairStyle == 2 ){
             drawPartyHat(canvas);
@@ -83,18 +89,20 @@ public class Face extends SurfaceView {
         }
         //Paint eyes
         //external citation: set sty
+        //https://developer.android.com/reference/android/graphics/Paint.Style.html
         canvas.drawCircle(xCenter - 175, yCenter, 170, eyes);
         canvas.drawCircle(xCenter + 175, yCenter, 170, eyes);
         myPaint.setColor(Color.BLACK);
         canvas.drawCircle(xCenter - 175, yCenter, 120, myPaint);
         canvas.drawCircle(xCenter + 175, yCenter, 120, myPaint);
-        myPaint.setStyle(Paint.Style.STROKE);
+        //myPaint.setStyle(Paint.Style.STROKE);
         myPaint.setStrokeWidth(5.0f);
         //canvas.drawCircle(xCenter - 175, yCenter, 170, myPaint);
         //canvas.drawCircle(xCenter + 175, yCenter, 170, myPaint);
 
         //Nose? Mouth?
-
+        canvas.drawArc(xCenter-100,yCenter+100, xCenter+100,
+                yCenter+400, 0, 180, true, myPaint);
     }
 
     public void randomize() {
@@ -122,9 +130,32 @@ public class Face extends SurfaceView {
                     yCenter+700, hair);
     }
 
-    public void drawFrostedTips(Canvas canavas){
-        //Paint rect
-        //Loop triangles
+    public void drawFrostedTips(Canvas canvas, int xCenter, int yCenter){
+        canvas.drawRect(xCenter-400, yCenter-400, xCenter+400,
+                yCenter, hair);
+        //External citation
+        //https://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas
+
+        hair.setColor(Color.WHITE);
+        hair.setStrokeWidth(20.0f);
+        //hair.setStyle(Paint.Style.FILL);
+        hair.setAntiAlias(true);
+        Path path = new Path();
+        path.setFillType(Path.FillType.EVEN_ODD);
+        float x1, y1, x2, y2;
+        x1 = 100;
+        x2 = 200;
+        y1 = 100;
+        y2 = 200;
+        path.moveTo(x1,y1);
+        path.lineTo(x2, y2);
+        path.moveTo(100.0f, 200.0f);
+        path.lineTo(200.0f, 200.0f);
+        path.moveTo(200.0f, 200.0f);
+        path.lineTo(100.0f, 100.0f);
+        path.close();
+
+        canvas.drawPath(path, hair);
     }
 
     public void drawPartyHat(Canvas canvas){
