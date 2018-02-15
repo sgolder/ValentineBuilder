@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.toshiba.facemaker.MainActivity">
+    tools:context="com.example.toshiba.facemaker.MainActivity"
+    android:orientation="vertical">
 
 
     <com.example.toshiba.facemaker.Face
         android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:elevation="1dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <RadioGroup
@@ -30,21 +32,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hair Color" />
+                android:text="Hair Color"
+                android:textSize="36sp" />
 
             <RadioButton
                 android:id="@+id/radioButtonEyes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Eye Color" />
+                android:text="Eye Color"
+                android:textSize="36sp" />
 
             <RadioButton
                 android:id="@+id/radioButtonSkin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Skin Color" />
+                android:text="Skin Color"
+                android:textSize="36sp" />
 
         </RadioGroup>
 
@@ -56,10 +61,11 @@
 
             <TextView
                 android:id="@+id/textViewRedLabel"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Red:" />
+                android:text="Red:"
+                android:textSize="36sp" />
 
             <SeekBar
                 android:id="@+id/seekBarRed"
@@ -78,10 +84,11 @@
 
             <TextView
                 android:id="@+id/textViewGreenLabel"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Green:" />
+                android:text="Green:"
+                android:textSize="36sp" />
 
             <SeekBar
                 android:id="@+id/seekBarGreen"
@@ -101,10 +108,11 @@
 
             <TextView
                 android:id="@+id/textViewBlueLabel"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Blue:" />
+                android:text="Blue:"
+                android:textSize="36sp" />
 
             <SeekBar
                 android:id="@+id/seekBarBlue"
@@ -126,7 +134,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hairstyle" />
+                android:text="Hairstyle"
+                android:textSize="36sp" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -141,7 +150,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:text="Generate Random Face"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
     </LinearLayout>
 </android.widget.LinearLayout>
