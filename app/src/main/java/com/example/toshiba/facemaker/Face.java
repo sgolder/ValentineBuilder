@@ -26,6 +26,7 @@ public class Face extends SurfaceView {
     private int skinColor;
     private int eyeColor;
     private int hairColor;
+    //0 = girl cut, 1 = frosted tips, 2 = party hat
     private int hairStyle;
     //0 = red, 1 = green, 2 = blue
     private int[] skinArray = new int[3];
@@ -34,6 +35,14 @@ public class Face extends SurfaceView {
     private Paint skin = new Paint();
     private Paint eyes = new Paint();
     private Paint hair = new Paint();
+
+    class Pt{
+        float x, y;
+        Pt(float _x, float _y) {
+            x = _x;
+            y = _y;
+        }
+    }
 
     public Face(Context context){
         super(context);
@@ -100,7 +109,7 @@ public class Face extends SurfaceView {
         //canvas.drawCircle(xCenter - 175, yCenter, 170, myPaint);
         //canvas.drawCircle(xCenter + 175, yCenter, 170, myPaint);
 
-        //Nose? Mouth?
+        //Mouth
         canvas.drawArc(xCenter-100,yCenter+100, xCenter+100,
                 yCenter+400, 0, 180, true, myPaint);
     }
@@ -113,14 +122,8 @@ public class Face extends SurfaceView {
             eyeArray[i] = rand.nextInt(255);
             hairArray[i] = rand.nextInt(255);
         }
-
         hairStyle = rand.nextInt(2);
         rgbToInt();
-        Log.i("FaceMaker", "Red value: "+skinArray[0]);
-
-        //Set seekBars based on int values
-        //Maybe have separate classes for each facial feat?
-        //E.g. Eye: red val, green val, blue val with getter methods
     }
 
     public void drawGirlCut(Canvas canvas, int xCenter, int yCenter){
@@ -131,30 +134,32 @@ public class Face extends SurfaceView {
     }
 
     public void drawFrostedTips(Canvas canvas, int xCenter, int yCenter){
-        canvas.drawRect(xCenter-400, yCenter-400, xCenter+400,
+        canvas.drawRect(xCenter-400, yCenter-450, xCenter+400,
                 yCenter, hair);
         //External citation
-        //https://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas
+        //http://android-er.blogspot.nl/2011/08/drawpath-on-canvas.html
 
         hair.setColor(Color.WHITE);
-        hair.setStrokeWidth(20.0f);
-        //hair.setStyle(Paint.Style.FILL);
-        hair.setAntiAlias(true);
-        Path path = new Path();
-        path.setFillType(Path.FillType.EVEN_ODD);
-        float x1, y1, x2, y2;
-        x1 = 100;
-        x2 = 200;
-        y1 = 100;
-        y2 = 200;
-        path.moveTo(x1,y1);
-        path.lineTo(x2, y2);
-        path.moveTo(100.0f, 200.0f);
-        path.lineTo(200.0f, 200.0f);
-        path.moveTo(200.0f, 200.0f);
-        path.lineTo(100.0f, 100.0f);
-        path.close();
+        hair.setStrokeWidth(10.0f);
+        hair.setStyle(Paint.Style.FILL);
 
+        Pt[] myPath = { new Pt(xCenter-400,yCenter-450),
+                new Pt(xCenter-300, yCenter-500),
+                new Pt(xCenter-200, yCenter-450),
+                new Pt(xCenter-100, yCenter-500),
+                new Pt(xCenter, yCenter-450),
+                new Pt(xCenter+100, yCenter-500),
+                new Pt(xCenter+200, yCenter-450),
+                new Pt(xCenter+300, yCenter-500),
+                new Pt(xCenter+400,yCenter-450),
+        };
+
+        Path path = new Path();
+        path.moveTo(myPath[0].x, myPath[0].y);
+        for( int i = 1; i < myPath.length; i++){
+            Log.i("Path", myPath[i].x+" "+myPath[i].y);
+            path.lineTo(myPath[i].x, myPath[i].y);
+        }
         canvas.drawPath(path, hair);
     }
 
@@ -191,6 +196,8 @@ public class Face extends SurfaceView {
         }
         rgbToInt();
     }
+
+    public void setHairStyle(int style){ hairStyle = style; }
 
     public int[] getSkinArray(){ return skinArray; }
 

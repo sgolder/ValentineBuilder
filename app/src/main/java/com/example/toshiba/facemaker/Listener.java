@@ -83,7 +83,7 @@ public class Listener implements View.OnClickListener,
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+            face.setHairStyle(position);
     }
 
     public void addViews(SurfaceView initface, SeekBar[] seekBars,
