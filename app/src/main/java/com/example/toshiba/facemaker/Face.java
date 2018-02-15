@@ -90,7 +90,7 @@ public class Face extends SurfaceView {
             drawFrostedTips(canvas, xCenter, yCenter);
         }
         else if( hairStyle == 2 ){
-            drawUniHorn(canvas, xCenter, yCenter);
+            drawCombOver(canvas, xCenter, yCenter);
         }
 
         //Paint face
@@ -110,7 +110,6 @@ public class Face extends SurfaceView {
         canvas.drawArc(xCenter-100,yCenter+100, xCenter+100,
                 yCenter+400, 0, 180, true, myPaint);
 
-        drawUniHorn(canvas, xCenter, yCenter);
     }
 
     public void randomize() {
@@ -185,6 +184,21 @@ public class Face extends SurfaceView {
 
     public void drawCombOver(Canvas canvas, int xCenter, int yCenter) {
 
+        Pt[] myPath = {new Pt(xCenter - 300, yCenter),
+                new Pt(xCenter-400, yCenter - 200),
+                new Pt(xCenter-250, yCenter-350),
+                new Pt(xCenter, yCenter-200),
+                new Pt(xCenter+250, yCenter-350),
+                new Pt(xCenter+400, yCenter-200),
+                new Pt(xCenter+300, yCenter)
+        };
+        Path path = new Path();
+        path.moveTo(myPath[0].x, myPath[0].y);
+        for( int i = 0; i < myPath.length; i++){
+            Log.i("Path", myPath[i].x+" "+myPath[i].y);
+            path.lineTo(myPath[i].x, myPath[i].y);
+        }
+        canvas.drawPath(path, hair);
     }
 
     public void rgbToInt(){
