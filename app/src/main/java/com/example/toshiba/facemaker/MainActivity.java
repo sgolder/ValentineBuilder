@@ -1,5 +1,6 @@
 package com.example.toshiba.facemaker;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
         }
         hairSpin.setOnItemSelectedListener(events);
 
-        events.addViews(face, seekBars, radGroup);
+        events.addViews(face, seekBars, radGroup, hairSpin, randButton);
         face.randomize();
+        face.setBackgroundColor(Color.CYAN);
+        events.updateSeekBars(face.getHairArray());
+        radGroup[0].setChecked(true);
     }
 }

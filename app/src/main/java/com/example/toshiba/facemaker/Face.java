@@ -27,7 +27,7 @@ public class Face extends SurfaceView {
     private int skinColor;
     private int eyeColor;
     private int hairColor;
-    //0 = girl cut, 1 = frosted tips, 2 = party hat
+    //0 = girl cut, 1 = frosted tips, 2 = comb over
     private int hairStyle;
     //0 = red, 1 = green, 2 = blue
     private int[] skinArray = new int[3];
@@ -44,7 +44,6 @@ public class Face extends SurfaceView {
             y = _y;
         }
     }
-
     public Face(Context context){
         super(context);
         generalInit();
@@ -58,7 +57,6 @@ public class Face extends SurfaceView {
         super(context, attrs, defStyleAttr);
         generalInit();
     }
-
     /**\
      * generalInit
      *
@@ -75,7 +73,7 @@ public class Face extends SurfaceView {
         //Initialize face with random generation of color/style
         Log.i("FaceMaker", "onDraw");
         int xCenter = (canvas.getWidth())/2;
-        int yCenter = (canvas.getHeight())/2+100;
+        int yCenter = (canvas.getHeight())/2;
         Paint myPaint = new Paint();
         skin.setColor(skinColor);
         skin.setStrokeWidth(5.0f);
@@ -109,7 +107,6 @@ public class Face extends SurfaceView {
         //Mouth
         canvas.drawArc(xCenter-100,yCenter+100, xCenter+100,
                 yCenter+400, 0, 180, true, myPaint);
-
     }
 
     public void randomize() {
@@ -120,7 +117,7 @@ public class Face extends SurfaceView {
             eyeArray[i] = rand.nextInt(255);
             hairArray[i] = rand.nextInt(255);
         }
-        hairStyle = rand.nextInt(2);
+        hairStyle = rand.nextInt(3);
         rgbToInt();
     }
 
@@ -182,6 +179,7 @@ public class Face extends SurfaceView {
         canvas.drawPath(path, partay);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void drawCombOver(Canvas canvas, int xCenter, int yCenter) {
 
         Pt[] myPath = {new Pt(xCenter - 300, yCenter),
@@ -199,6 +197,14 @@ public class Face extends SurfaceView {
             path.lineTo(myPath[i].x, myPath[i].y);
         }
         canvas.drawPath(path, hair);
+        hair.setStyle(Paint.Style.STROKE);
+        canvas.drawArc(xCenter-250, yCenter-410, xCenter+250,
+                yCenter-190, 180, 360, false, hair);
+        canvas.drawArc(xCenter-250, yCenter-420, xCenter+250,
+                yCenter-200, 180, 360, false, hair);
+        canvas.drawArc(xCenter-250, yCenter-430, xCenter+250,
+                yCenter-200, 180, 360, false, hair);
+        hair.setStyle(Paint.Style.FILL);
     }
 
     public void rgbToInt(){
@@ -237,4 +243,6 @@ public class Face extends SurfaceView {
     public int[] getEyeArray(){ return eyeArray; }
 
     public int[] getHairArray() { return hairArray; }
+
+    public int getHairStyle() { return hairStyle; }
 }

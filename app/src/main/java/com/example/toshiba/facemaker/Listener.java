@@ -1,6 +1,7 @@
 package com.example.toshiba.facemaker;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -62,7 +63,7 @@ public class Listener implements View.OnClickListener,
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         Log.i("Listener", "onProgressChanged");
         if( !fromUser ){ return; }
-        SeekBar cur = (SeekBar) seekBar;
+        SeekBar cur = seekBar;
         int curId = cur.getId();
         //Insert external citation
         String seekLabel = cur.getResources().
@@ -110,6 +111,12 @@ public class Listener implements View.OnClickListener,
         redSeek.setProgress(colorArray[0]);
         greenSeek.setProgress(colorArray[1]);
         blueSeek.setProgress(colorArray[2]);
+
+        updateHairSpin();
+    }
+
+    public void updateHairSpin(){
+        hairSpin.setSelection(face.getHairStyle());
     }
 
     @Override
