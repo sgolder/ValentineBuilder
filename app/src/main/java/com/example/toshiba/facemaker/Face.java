@@ -15,6 +15,7 @@ import android.view.SurfaceView;
 import java.util.Random;
 
 import static android.R.attr.x;
+import static android.R.attr.y;
 import static android.graphics.Color.rgb;
 
 /**
@@ -36,7 +37,7 @@ public class Face extends SurfaceView {
     private Paint eyes = new Paint();
     private Paint hair = new Paint();
 
-    class Pt{
+    private class Pt{
         float x, y;
         Pt(float _x, float _y) {
             x = _x;
@@ -74,7 +75,7 @@ public class Face extends SurfaceView {
         //Initialize face with random generation of color/style
         Log.i("FaceMaker", "onDraw");
         int xCenter = (canvas.getWidth())/2;
-        int yCenter = (canvas.getHeight())/2;
+        int yCenter = (canvas.getHeight())/2+100;
         Paint myPaint = new Paint();
         skin.setColor(skinColor);
         skin.setStrokeWidth(5.0f);
@@ -89,7 +90,7 @@ public class Face extends SurfaceView {
             drawFrostedTips(canvas, xCenter, yCenter);
         }
         else if( hairStyle == 2 ){
-            drawPartyHat(canvas);
+            drawUniHorn(canvas, xCenter, yCenter);
         }
 
         //Paint face
@@ -104,14 +105,12 @@ public class Face extends SurfaceView {
         myPaint.setColor(Color.BLACK);
         canvas.drawCircle(xCenter - 175, yCenter, 120, myPaint);
         canvas.drawCircle(xCenter + 175, yCenter, 120, myPaint);
-        //myPaint.setStyle(Paint.Style.STROKE);
-        myPaint.setStrokeWidth(5.0f);
-        //canvas.drawCircle(xCenter - 175, yCenter, 170, myPaint);
-        //canvas.drawCircle(xCenter + 175, yCenter, 170, myPaint);
 
         //Mouth
         canvas.drawArc(xCenter-100,yCenter+100, xCenter+100,
                 yCenter+400, 0, 180, true, myPaint);
+
+        drawUniHorn(canvas, xCenter, yCenter);
     }
 
     public void randomize() {
@@ -138,10 +137,10 @@ public class Face extends SurfaceView {
                 yCenter, hair);
         //External citation
         //http://android-er.blogspot.nl/2011/08/drawpath-on-canvas.html
-
-        hair.setColor(Color.WHITE);
-        hair.setStrokeWidth(10.0f);
-        hair.setStyle(Paint.Style.FILL);
+        Paint frosty = new Paint();
+        frosty.setColor(Color.WHITE);
+        frosty.setStrokeWidth(10.0f);
+        frosty.setStyle(Paint.Style.FILL);
 
         Pt[] myPath = { new Pt(xCenter-400,yCenter-450),
                 new Pt(xCenter-300, yCenter-500),
@@ -156,16 +155,36 @@ public class Face extends SurfaceView {
 
         Path path = new Path();
         path.moveTo(myPath[0].x, myPath[0].y);
-        for( int i = 1; i < myPath.length; i++){
+        for( int i = 0; i < myPath.length; i++){
             Log.i("Path", myPath[i].x+" "+myPath[i].y);
             path.lineTo(myPath[i].x, myPath[i].y);
         }
-        canvas.drawPath(path, hair);
+        canvas.drawPath(path, frosty);
     }
 
-    public void drawPartyHat(Canvas canvas){
+    public void drawUniHorn(Canvas canvas, int xCenter, int yCenter){
         //Draw triangle outline
         //Stripes with the overlapping methods??
+        Paint partay = new Paint();
+        partay.setColor(Color.WHITE);
+        partay.setStrokeWidth(10.0f);
+        partay.setStyle(Paint.Style.FILL);
+
+        Pt[] myPath = {new Pt(xCenter - 50, yCenter - 250),
+                new Pt(xCenter + 300, yCenter-600),
+                new Pt(xCenter + 50, yCenter - 250)
+        };
+        Path path = new Path();
+        path.moveTo(myPath[0].x, myPath[0].y);
+        for( int i = 0; i < myPath.length; i++){
+            Log.i("Path", myPath[i].x+" "+myPath[i].y);
+            path.lineTo(myPath[i].x, myPath[i].y);
+        }
+        canvas.drawPath(path, partay);
+    }
+
+    public void drawCombOver(Canvas canvas, int xCenter, int yCenter) {
+
     }
 
     public void rgbToInt(){
