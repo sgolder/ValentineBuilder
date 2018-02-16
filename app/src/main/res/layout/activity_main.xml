@@ -12,39 +12,38 @@
         android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:elevation="1dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textViewValentine"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:fontFamily="casual"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:text="Build your valentine"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:textSize="36sp" />
 
         <TextView
             android:id="@+id/textViewRadGroupLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="Adjust color of a facial feature:"
-            android:textSize="30sp"
-            android:typeface="casual" />
+            android:textSize="26sp" />
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <RadioButton
@@ -52,34 +51,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Hair Color"
-                android:textSize="30sp"
-                android:typeface="casual" />
+                android:textSize="26sp"
+                android:typeface="normal" />
 
             <RadioButton
                 android:id="@+id/radioButtonEyes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Eye Color"
-                android:textSize="30sp"
-                android:typeface="casual" />
+                android:textSize="26sp"
+                android:typeface="normal" />
 
             <RadioButton
                 android:id="@+id/radioButtonSkin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Skin Color"
-                android:textSize="30sp"
-                android:typeface="casual" />
+                android:textSize="26sp"
+                android:typeface="normal" />
 
         </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
@@ -87,9 +89,10 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Red:"
-                android:textSize="30sp"
-                android:typeface="casual" />
+                android:textSize="26sp"
+                android:typeface="normal" />
 
             <SeekBar
                 android:id="@+id/seekBarRed"
@@ -102,8 +105,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
@@ -111,9 +114,10 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Green:"
-                android:textSize="30sp"
-                android:typeface="casual" />
+                android:textSize="26sp"
+                android:typeface="normal" />
 
             <SeekBar
                 android:id="@+id/seekBarGreen"
@@ -127,8 +131,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
@@ -136,9 +140,10 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Blue:"
-                android:textSize="30sp"
-                android:typeface="casual" />
+                android:textSize="26sp"
+                android:typeface="normal" />
 
             <SeekBar
                 android:id="@+id/seekBarBlue"
@@ -151,8 +156,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
@@ -160,9 +165,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Choose a hairstyle:"
-                android:textSize="30sp"
-                android:typeface="casual" />
+                android:textSize="26sp"
+                android:typeface="normal" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -174,12 +180,13 @@
         <Button
             android:id="@+id/buttonRandomize"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="Generate Random Face"
             android:textAllCaps="false"
-            android:textSize="30sp"
-            android:typeface="casual" />
+            android:textSize="26sp"
+            android:typeface="normal" />
 
     </LinearLayout>
 </android.widget.LinearLayout>

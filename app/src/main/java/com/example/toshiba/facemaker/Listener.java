@@ -13,7 +13,10 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 
 /**
- * Created by Sarah Golder on 2/12/2018.
+ * Listener class listens to buttons, seekbars, and the spinner
+ * and updates Face SurfaceView based on the changes.
+ *
+ * @Author Sarah Golder on 2/12/2018.
  */
 
 public class Listener implements View.OnClickListener,
@@ -27,21 +30,20 @@ public class Listener implements View.OnClickListener,
     private Face face = null;
     private Spinner hairSpin;
     private Button randButton = null;
-    String faceFeat = "";
+    private String faceFeat = "";
 
+    /**
+     * Listens to the randomize button and radio buttons
+     */
     @Override
     public void onClick(View v) {
-        //Randomize button listener
-        Log.i("Listener", "onClick");
         int[] colorArray = new int[3];
-
+        //Randomize button listener
         if(v.equals(randButton)){
             face.randomize();
         }
-
-        //RadioGroup
-        if( skinRad.isChecked() )
-        {
+        //Listens to RadioGroup
+        if( skinRad.isChecked() ) {
             colorArray = face.getSkinArray();
             updateSeekBars(colorArray);
             faceFeat = "Skin";
@@ -59,6 +61,9 @@ public class Listener implements View.OnClickListener,
         face.update();
     }
 
+    /**
+     * Listens to seekbars and changes colors accordingly
+     */
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         Log.i("Listener", "onProgressChanged");
@@ -82,12 +87,18 @@ public class Listener implements View.OnClickListener,
         face.update();
     }
 
+    /**
+     * Listens to spinner and updates hairstyle in Face class
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             face.setHairStyle(position);
             face.update();
     }
 
+    /**
+     * Sets instances of each view for listener class
+     */
     public void addViews(SurfaceView initface, SeekBar[] seekBars,
                          RadioButton[] radGroup, Spinner spinner,
                          Button rand){
